@@ -22,3 +22,6 @@ body {
   .container > .fluid {
     grid-column: 1 / -1;
   }
+  next-route-announcer {
+    display: none;
+  }
