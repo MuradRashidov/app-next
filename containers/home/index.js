@@ -5,24 +5,24 @@ import Genres from "@/mocks/genres.json"
 import { Categories } from '@/components/categories'
 import { MoviesSection } from '@/components/movies-section'
 
-function HomeContainer({selectedCategory}) {
+function HomeContainer({topRatedMovies = [],popularMovies=[],categories=[],selectedCategory}) {
   return (
     <div>
-        <FeaturedMovie movie={Movies.results[0]}/>
-        <Categories categories={Genres.genres.slice(0,5)}/>
+        <FeaturedMovie movie={topRatedMovies?.[0]}/>
+        <Categories categories={categories.slice(0,5)}/>
        {selectedCategory.movies.length>0 && (
          <MoviesSection
-         title={Genres.genres.find(genre=> `${genre.id}` ===selectedCategory.id).name}
+         title={categories.find(genre=> `${genre.id}` ===selectedCategory.id).name}
          movies={selectedCategory.movies}
          />
        )}
         <MoviesSection
         title="Most Popular"
-        movies={Movies.results.slice(0,9)}
+        movies={topRatedMovies.slice(0,9)}
         />
         <MoviesSection
         title="Your favourites"
-        movies={Movies.results.slice(9,18)}
+        movies={popularMovies.slice(9,18)}
         />
     </div>
   )
